@@ -8,8 +8,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import ifpr.pgua.eic.projetointegrador.controllers.TelaFuncionarios;
 import ifpr.pgua.eic.projetointegrador.controllers.TelaPrincipal;
+import ifpr.pgua.eic.projetointegrador.controllers.viewmodels.TelaFuncionarioViewModel;
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
+import ifpr.pgua.eic.projetointegrador.model.daos.FuncionarioDAO;
+import ifpr.pgua.eic.projetointegrador.model.daos.JDBCFuncionario;
+import ifpr.pgua.eic.projetointegrador.model.entities.Funcionario;
+import ifpr.pgua.eic.projetointegrador.model.repositories.FuncionarioRepository;
 import ifpr.pgua.eic.projetointegrador.utils.Navigator.BaseAppNavigator;
 import ifpr.pgua.eic.projetointegrador.utils.Navigator.ScreenRegistryFXML;
 
@@ -20,15 +26,17 @@ import ifpr.pgua.eic.projetointegrador.utils.Navigator.ScreenRegistryFXML;
 public class App extends BaseAppNavigator {
 
 
-    //DEFINIR A FABRICA DE CONEXÕES, DAOS e REPOSITÓRIOS
+    private FabricaConexoes fabricaConexoes = FabricaConexoes.getInstance();
+    private FuncionarioDAO funcionarioDAO;
+    private FuncionarioRepository funcionarioRepository;
+    private Funcionario funcionarios;
 
     @Override
-    public void init() throws Exception {
-        // TODO Auto-generated method stub
+    public void init() throws Exception{
         super.init();
-        
-        //INSTANCIAR FABRICA, DAOS E REPOSITÓRIOS
-    
+
+        funcionarioDAO = new JDBCFuncionario(fabricaConexoes);
+        funcionarioRepository = new FuncionarioRepository(funcionarioDAO);
     }
 
     @Override
@@ -37,27 +45,19 @@ public class App extends BaseAppNavigator {
 
     }
 
-
-
     @Override
     public String getHome() {
-        // TODO Auto-generated method stub
         return "PRINCIPAL";
     }
 
     @Override
     public String getAppTitle() {
-        // TODO Auto-generated method stub
-        return "Projeto Integrador";
+        return "Funcionários";
     }
 
     @Override
-    public void registrarTelas() {
-        registraTela("PRINCIPAL", new ScreenRegistryFXML(getClass(), "fxml/principal.fxml", (o)->new TelaPrincipal()));
-        
-        //REGISTRAR AS OUTRAS TELAS
-
+    public void registrarTelas(){
+        registraTela("FUNCIONARIOS",  new ScreenRegistryFXML(getClass(), "fxml/funcionarios.fxml", (o)->new TelaFuncionarios(new TelaFuncionarioViewModel(funcionarioRepository))));
     }
-
 
 }
