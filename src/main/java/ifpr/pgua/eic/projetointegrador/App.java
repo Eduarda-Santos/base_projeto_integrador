@@ -37,6 +37,8 @@ public class App extends BaseAppNavigator {
 
         funcionarioDAO = new JDBCFuncionario(fabricaConexoes);
         funcionarioRepository = new FuncionarioRepository(funcionarioDAO);
+
+        funcionarios = new Funcionario("teste", 0, "teste", "teste", null, 0);
     }
 
     @Override
@@ -57,7 +59,9 @@ public class App extends BaseAppNavigator {
 
     @Override
     public void registrarTelas(){
+        registraTela("PRINCIPAL",  new ScreenRegistryFXML(getClass(), "fxml/principal.fxml", (o)->new TelaPrincipal()));
         registraTela("FUNCIONARIOS",  new ScreenRegistryFXML(getClass(), "fxml/funcionarios.fxml", (o)->new TelaFuncionarios(new TelaFuncionarioViewModel(funcionarioRepository))));
+        //registraTela("FUNCIONARIOS", new ScreenRegistryFXML(getClass(), "fxml/funcionarios.fxml", (o)->new TelaFuncionarios(new TelaFuncionarioViewModel(funcionarioRepository))));  
     }
 
 }
