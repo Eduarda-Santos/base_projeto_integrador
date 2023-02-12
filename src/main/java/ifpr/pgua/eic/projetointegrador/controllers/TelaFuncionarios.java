@@ -3,16 +3,18 @@ package ifpr.pgua.eic.projetointegrador.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class TelaFuncionarios {
+import ifpr.pgua.eic.projetointegrador.controllers.viewmodels.TelaFuncionarioViewModel;
+
+public class TelaFuncionarios extends BaseController {
+
     @FXML
     private TextField tfNome;
 
@@ -37,6 +39,11 @@ public class TelaFuncionarios {
     @FXML
     private Button btLimpar;
 
+    private TelaFuncionarioViewModel viewModel;
+
+    public TelaFuncionarios(TelaFuncionarioViewModel viewModel){
+        this.viewModel = viewModel;
+    }
 
     @FXML
     private void cadastrar(){
