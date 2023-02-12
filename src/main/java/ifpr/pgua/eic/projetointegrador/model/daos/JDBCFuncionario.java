@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-import javax.naming.spi.DirStateFactory.Result;
 
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
 import ifpr.pgua.eic.projetointegrador.model.entities.Funcionario;
+import ifpr.pgua.eic.projetointegrador.model.results.Result;
 
 public class JDBCFuncionario implements FuncionarioDAO{
 
@@ -54,6 +54,5 @@ public class JDBCFuncionario implements FuncionarioDAO{
         // TODO Auto-generated method stub
         return null;
     }
-
-    
+   
 }
