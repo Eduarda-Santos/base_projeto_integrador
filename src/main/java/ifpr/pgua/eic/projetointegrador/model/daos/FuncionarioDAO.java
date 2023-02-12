@@ -2,9 +2,9 @@ package ifpr.pgua.eic.projetointegrador.model.daos;
 
 import java.util.List;
 
-import javax.naming.spi.DirStateFactory.Result;
 
 import ifpr.pgua.eic.projetointegrador.model.entities.Funcionario;
+import ifpr.pgua.eic.projetointegrador.model.results.Result;
 
 public interface FuncionarioDAO {
     Result create(Funcionario funcionario);
