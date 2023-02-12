@@ -1,14 +1,15 @@
 package ifpr.pgua.eic.projetointegrador.model.repositories;
 
-import java.sql.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import javax.naming.spi.DirStateFactory.Result;
+
 
 import ifpr.pgua.eic.projetointegrador.model.daos.FuncionarioDAO;
 import ifpr.pgua.eic.projetointegrador.model.entities.Funcionario;
+import ifpr.pgua.eic.projetointegrador.model.results.Result;
 
 
 public class FuncionarioRepository {
@@ -19,7 +20,7 @@ public class FuncionarioRepository {
         this.dao = dao;
     }
 
-    public Result adicionarFuncionario(String nome, int telefone, String endereco, String sexo, Date datadeNascimento,
+    public Result adicionarFuncionario(String nome, int telefone, String endereco, String sexo, DateTimeFormatter datadeNascimento,
     int telefoneEmergencia){
         Optional<Funcionario> busca = funcionarios.stream().filter((fun)->fun.getNome().equals(nome)).findFirst();
     
@@ -31,7 +32,7 @@ public class FuncionarioRepository {
         return dao.create(funcionario);
     }
 
-    public Result atualizarFuncionario(String nome, int telefone, String endereco, String sexo, Date datadeNascimento,
+    public Result atualizarFuncionario(String nome, int telefone, String endereco, String sexo, DateTimeFormatter datadeNascimento,
     int telefoneEmergencia){
         Optional<Funcionario> busca = funcionarios.stream().filter((fun)->fun.getNome().equals(nome)).findFirst();
     
@@ -46,10 +47,11 @@ public class FuncionarioRepository {
             
             return Result.success("Funcionário atualizado");
         }
+        //return Result.fail("Funcionário não encontrado");
         return Result.fail("Funcionário não encontrado");
     }
 
-    public List<Funcionario> getFuncionario(){
+    public List<Funcionario> getFuncionarios(){
         funcionarios = dao.listAll();
         return Collections.unmodifiableList(funcionarios);
     }

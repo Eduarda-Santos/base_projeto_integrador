@@ -1,6 +1,7 @@
 package ifpr.pgua.eic.projetointegrador.model.entities;
 
 import java.sql.Date;
+import java.time.format.DateTimeFormatter;
 
 public class Funcionario {
 
@@ -9,10 +10,10 @@ public class Funcionario {
     private int telefone;
     private String endereco;
     private String sexo;
-    private Date datadeNascimento;
+    private DateTimeFormatter datadeNascimento;
     private int telefoneEmergencia;
     
-    public Funcionario(String nome, int telefone, String endereco, String sexo, Date datadeNascimento,
+    public Funcionario(String nome, int telefone, String endereco, String sexo, DateTimeFormatter datadeNascimento,
             int telefoneEmergencia) {
         this.nome = nome;
         this.telefone = telefone;
@@ -22,7 +23,7 @@ public class Funcionario {
         this.telefoneEmergencia = telefoneEmergencia;
     }
 
-    public Funcionario(int id, String nome, int telefone, String endereco, String sexo, Date datadeNascimento,
+    public Funcionario(int id, String nome, int telefone, String endereco, String sexo, DateTimeFormatter datadeNascimento,
             int telefoneEmergencia) {
         this.id = id;
         this.nome = nome;
@@ -68,10 +69,10 @@ public class Funcionario {
         this.sexo = sexo;
     }
 
-    public Date getDatadeNascimento() {
+    public DateTimeFormatter getDatadeNascimento() {
         return datadeNascimento;
     }
-    public void setDatadeNascimento(Date datadeNascimento) {
+    public void setDatadeNascimento(DateTimeFormatter datadeNascimento) {
         this.datadeNascimento = datadeNascimento;
     }
 
