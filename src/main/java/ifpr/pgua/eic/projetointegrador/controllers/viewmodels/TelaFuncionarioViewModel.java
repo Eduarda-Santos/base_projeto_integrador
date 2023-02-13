@@ -1,8 +1,12 @@
 package ifpr.pgua.eic.projetointegrador.controllers.viewmodels;
 
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.time.format.DateTimeFormatter;
 
+import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
+import ifpr.pgua.eic.projetointegrador.model.daos.FuncionarioDAO;
+import ifpr.pgua.eic.projetointegrador.model.daos.JDBCFuncionario;
 import ifpr.pgua.eic.projetointegrador.model.entities.Funcionario;
 import ifpr.pgua.eic.projetointegrador.model.repositories.FuncionarioRepository;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
@@ -97,6 +101,22 @@ public class TelaFuncionarioViewModel {
         Integer telefoneEmergencia = Integer.valueOf(sTelefoneEmergencia);
 
         repository.adicionarFuncionario(nome, 0, endereco, sexo, datadeNascimento, 0);
+        
+        limpar();
+    }
+
+    public void editar(){
+        String nome = nomeProperty.getValue();
+        String sTelefone = telefoneProperty.getValue();
+        String endereco = enderecoProperty.getValue();
+        String sexo = sexoProperty.getValue();
+        DateTimeFormatter datadeNascimento = datadeNascimentoProperty.getValue();
+        String sTelefoneEmergencia = telefoneEmergenciaProperty.getValue();
+        
+        Integer telefone = Integer.valueOf(sTelefone);
+        Integer telefoneEmergencia = Integer.valueOf(sTelefoneEmergencia);
+
+        repository.editarFuncionario(nome, 0, endereco, sexo, datadeNascimento, 0);
         
         limpar();
     }

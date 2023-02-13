@@ -32,7 +32,7 @@ public class FuncionarioRepository {
         return dao.create(funcionario);
     }
 
-    public Result atualizarFuncionario(String nome, int telefone, String endereco, String sexo, DateTimeFormatter datadeNascimento,
+    public Result editarFuncionario(String nome, int telefone, String endereco, String sexo, DateTimeFormatter datadeNascimento,
     int telefoneEmergencia){
         Optional<Funcionario> busca = funcionarios.stream().filter((fun)->fun.getNome().equals(nome)).findFirst();
     
@@ -46,6 +46,25 @@ public class FuncionarioRepository {
             funcionario.setTelefoneEmergencia(telefoneEmergencia);
             
             return Result.success("Funcionário atualizado");
+        }
+        //return Result.fail("Funcionário não encontrado");
+        return Result.fail("Funcionário não encontrado");
+    }
+
+    public Result deletarFuncionario(String nome, int telefone, String endereco, String sexo, DateTimeFormatter datadeNascimento,
+    int telefoneEmergencia){
+        Optional<Funcionario> busca = funcionarios.stream().filter((fun)->fun.getNome().equals(nome)).findFirst();
+    
+        if(busca.isPresent()){
+            Funcionario funcionario = busca.get();
+            funcionario.setNome("");
+            funcionario.setTelefone(0);
+            funcionario.setEndereco("");
+            funcionario.setDatadeNascimento(null);
+            funcionario.setSexo("");
+            funcionario.setTelefoneEmergencia(0);
+            
+            return Result.success("Funcionário deletado");
         }
         //return Result.fail("Funcionário não encontrado");
         return Result.fail("Funcionário não encontrado");
