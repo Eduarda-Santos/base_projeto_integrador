@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import ifpr.pgua.eic.projetointegrador.controllers.TelaEditar;
 import ifpr.pgua.eic.projetointegrador.controllers.TelaFuncionarios;
 import ifpr.pgua.eic.projetointegrador.controllers.TelaPrincipal;
 import ifpr.pgua.eic.projetointegrador.controllers.viewmodels.TelaFuncionarioViewModel;
@@ -59,9 +60,9 @@ public class App extends BaseAppNavigator {
 
     @Override
     public void registrarTelas(){
-        registraTela("PRINCIPAL",  new ScreenRegistryFXML(getClass(), "fxml/principal.fxml", (o)->new TelaPrincipal()));
-        registraTela("FUNCIONARIOS",  new ScreenRegistryFXML(getClass(), "fxml/funcionarios.fxml", (o)->new TelaFuncionarios(new TelaFuncionarioViewModel(funcionarioRepository))));
-        //registraTela("FUNCIONARIOS", new ScreenRegistryFXML(getClass(), "fxml/funcionarios.fxml", (o)->new TelaFuncionarios(new TelaFuncionarioViewModel(funcionarioRepository))));  
+        registraTela("PRINCIPAL",  new ScreenRegistryFXML(getClass(), "principal.fxml", (o)->new TelaPrincipal()));
+        registraTela("FUNCIONARIOS",  new ScreenRegistryFXML(getClass(), "funcionarios.fxml", (o)->new TelaFuncionarios(new TelaFuncionarioViewModel(funcionarioRepository))));
+        registraTela("EDITAR", new ScreenRegistryFXML(getClass(), "editar.fxml", (o)->new TelaEditar(new TelaFuncionarioViewModel(funcionarioRepository))));  
     }
 
 }
