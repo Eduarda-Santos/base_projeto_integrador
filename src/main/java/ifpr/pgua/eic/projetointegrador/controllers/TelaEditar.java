@@ -39,7 +39,7 @@ public class TelaEditar {
 
     @FXML
     private void editar(){
-        viewModel.editar();
+        //viewModel.editar();
     }
 
     @FXML

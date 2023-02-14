@@ -60,9 +60,9 @@ public class App extends BaseAppNavigator {
 
     @Override
     public void registrarTelas(){
-        registraTela("PRINCIPAL",  new ScreenRegistryFXML(getClass(), "principal.fxml", (o)->new TelaPrincipal()));
-        registraTela("FUNCIONARIOS",  new ScreenRegistryFXML(getClass(), "funcionarios.fxml", (o)->new TelaFuncionarios(new TelaFuncionarioViewModel(funcionarioRepository))));
-        registraTela("EDITAR", new ScreenRegistryFXML(getClass(), "editar.fxml", (o)->new TelaEditar(new TelaFuncionarioViewModel(funcionarioRepository))));  
+        registraTela("PRINCIPAL",  new ScreenRegistryFXML(getClass(), "fxml/principal.fxml", (o)->new TelaPrincipal()));
+        registraTela("FUNCIONARIOS",  new ScreenRegistryFXML(getClass(), "fxml/funcionarios.fxml", (o)->new TelaFuncionarios(new TelaFuncionarioViewModel(funcionarioRepository))));
+        registraTela("EDITAR", new ScreenRegistryFXML(getClass(), "fxml/editar.fxml", (o)->new TelaEditar(new TelaFuncionarioViewModel(funcionarioRepository))));  
     }
 
 }

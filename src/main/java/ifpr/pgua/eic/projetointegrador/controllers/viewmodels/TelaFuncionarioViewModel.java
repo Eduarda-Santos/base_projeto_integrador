@@ -38,7 +38,6 @@ public class TelaFuncionarioViewModel {
 
     public TelaFuncionarioViewModel(FuncionarioRepository repository){
         this.repository = repository;
-
         updateList();
     }
 

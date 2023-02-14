@@ -1,4 +1,3 @@
-
 CREATE TABLE IF NOT EXISTS funcionarios(
     id INTEGER PRIMARY KEY, 
     nome TEXT NOT NULL, 
@@ -6,5 +5,5 @@ CREATE TABLE IF NOT EXISTS funcionarios(
     endereco TEXT NOT NULL,
     sexo TEXT NOT NULL,
     dataNascimento INTEGER NOT NULL,
-    telefoneEmergencia TEXT NOT NULL,
+    telefoneEmergencia TEXT NOT NULL
 );

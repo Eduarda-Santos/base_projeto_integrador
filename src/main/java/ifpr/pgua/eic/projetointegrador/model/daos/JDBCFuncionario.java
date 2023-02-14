@@ -2,6 +2,13 @@ package ifpr.pgua.eic.projetointegrador.model.daos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -33,13 +40,29 @@ public class JDBCFuncionario implements FuncionarioDAO{
 
     @Override
     public Result update(int id, Funcionario funcionario) {
-        // TODO Auto-generated method stub
+        try {
+            Connection con = fabricaConexoes.getConnection();
+
+            PreparedStatement pstm = con.prepareStatement("UPDATE INTO funcionarios(nome,telefone,endereco,sexo,dataNascimento,telefoneEmergencia) VALUES (?,?,?,?,?,?)");
+
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
         return null;
     }
 
     @Override
     public List<Funcionario> listAll() {
-        // TODO Auto-generated method stub
+        try {
+            Connection con = fabricaConexoes.getConnection();
+
+            PreparedStatement pstm = con.prepareStatement("SELECT INTO funcionarios(nome,telefone,endereco,sexo,dataNascimento,telefoneEmergencia) VALUES (?,?,?,?,?,?)");
+
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
         return null;
     }
 
