@@ -27,6 +27,7 @@ public class TelaFuncionarioViewModel {
     private ObjectProperty<DateTimeFormatter> datadeNascimentoProperty = new SimpleObjectProperty<>();
     private StringProperty telefoneEmergenciaProperty = new SimpleStringProperty();
     private ObjectProperty<Result> alertProperty = new SimpleObjectProperty<>();
+    private ObjectProperty<FuncionarioRow> selecionado = new SimpleObjectProperty<>();
 
     private StringProperty operacao = new SimpleStringProperty("Cadastrar");
     private BooleanProperty podeEditar = new SimpleBooleanProperty(true);
@@ -38,6 +39,7 @@ public class TelaFuncionarioViewModel {
 
     public TelaFuncionarioViewModel(FuncionarioRepository repository){
         this.repository = repository;
+
         updateList();
     }
 
@@ -87,6 +89,10 @@ public class TelaFuncionarioViewModel {
     public StringProperty telefoneEmergenciaProperty(){
         return telefoneEmergenciaProperty;
     }
+
+    public ObjectProperty<FuncionarioRow> selecionadoProperty() {
+        return selecionado;
+    }
     
     public void cadastrar(){
         String nome = nomeProperty.getValue();
@@ -111,6 +117,7 @@ public class TelaFuncionarioViewModel {
         String sexo = sexoProperty.getValue();
         DateTimeFormatter datadeNascimento = datadeNascimentoProperty.getValue();
         String sTelefoneEmergencia = telefoneEmergenciaProperty.getValue();
+        Funcionario funcionario = selecionado.get().getFuncionario();
         
         Integer telefone = Integer.valueOf(sTelefone);
         Integer telefoneEmergencia = Integer.valueOf(sTelefoneEmergencia);

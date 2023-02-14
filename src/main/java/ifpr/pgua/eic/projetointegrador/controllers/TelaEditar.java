@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class TelaEditar {
     @FXML
@@ -38,8 +39,10 @@ public class TelaEditar {
     }
 
     @FXML
-    private void editar(){
-        //viewModel.editar();
+    private void editar(MouseEvent event){
+        if(event.getClickCount() == 2){
+            viewModel.editar();
+        }
     }
 
     @FXML

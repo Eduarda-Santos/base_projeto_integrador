@@ -23,6 +23,8 @@
     <TextField fx:id="tfSexo" GridPane.columnIndex="1" />
     <TextField fx:id="tfTelefoneEmergencia" GridPane.columnIndex="1" />
 
-    <Button fx:id="btEditar" onAction="#editar" text="Editar" />
-    <Button fx:id="btLimpar" onAction="#limpar" text="Limpar" />
+    <children>
+        <MFXButton fx:id="btEditar" buttonType="RAISED" onAction="#editar" text="Editar" />
+        <MFXButton buttonType="RAISED" onAction="#limpar" text="Limpar" />
+     </children>
 </VBox>

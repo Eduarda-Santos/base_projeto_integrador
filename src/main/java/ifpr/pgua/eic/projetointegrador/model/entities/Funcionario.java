@@ -34,6 +34,15 @@ public class Funcionario {
         this.telefoneEmergencia = telefoneEmergencia;
     }
     
+    public Funcionario(int id, String nome, int telefone, String endereco, String sexo, int telefoneEmergencia) {
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.sexo = sexo;
+        this.telefoneEmergencia = telefoneEmergencia;
+    }
+
     public int getId() {
         return id;
     }
