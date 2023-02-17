@@ -53,17 +53,46 @@ public class JDBCFuncionario implements FuncionarioDAO{
     }
 
     @Override
-    public List<Funcionario> listAll() {
-        try {
-            Connection con = fabricaConexoes.getConnection();
+    public ArrayList<Funcionario> listAll() {
+        try{
+            //criando uma conexão
+            Connection con = fabricaConexoes.getConnection(); 
+            
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM funcionarios");
 
-            PreparedStatement pstm = con.prepareStatement("SELECT INTO funcionarios(nome,telefone,endereco,sexo,dataNascimento,telefoneEmergencia) VALUES (?,?,?,?,?,?)");
+            ResultSet rs = pstm.executeQuery();
 
+            ArrayList<Funcionario> funcionarios = new ArrayList<>();
 
-        } catch (Exception e) {
-            // TODO: handle exception
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                Integer telefone = rs.getInt("telefone");
+                String endereco = rs.getString("endereco");
+                String sexo = rs.getString("sexo");
+                String sdataNascimento = rs.getString("dataNascimento");
+                Integer telefoneEmergencia = rs.getInt("telefoneEmergencia");
+
+                //Date dataNascimento = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    sdataNascimento = sdf.parse(sdataNascimento);
+                } catch (ParseException pe){
+                    pe.printStackTrace();
+                }
+                DateTimeFormatter dataNascimento = new Date(sdataNascimento);
+
+                //SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+                //DateTimeFormatter dataNascimento = fmt.parse(sdataNascimento);
+                Funcionario funcionario = new Funcionario(id, nome, telefone, endereco, sexo, telefoneEmergencia);
+                funcionarios.add(funcionario);
+            }
+            return funcionarios;
+
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            return null;
         }
-        return null;
     }
 
     @Override
