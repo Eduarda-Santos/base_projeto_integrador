@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +31,7 @@ public class JDBCFuncionario implements FuncionarioDAO{
         try {
             Connection con = fabricaConexoes.getConnection();
 
-            PreparedStatement pstm = con.prepareStatement("INSERT INTO funcionarios(nome,telefone,endereco,sexo,dataNascimento,telefoneEmergencia) VALUES (?,?,?,?,?,?)");
+            PreparedStatement pstm = con.prepareStatement("INSERT INTO funcionarios(nome,telefone,endereco,sexo,datadeNascimento,telefoneEmergencia) VALUES (?,?,?,?,?,?)");
 
 
         } catch (Exception e) {
@@ -43,7 +45,7 @@ public class JDBCFuncionario implements FuncionarioDAO{
         try {
             Connection con = fabricaConexoes.getConnection();
 
-            PreparedStatement pstm = con.prepareStatement("UPDATE INTO funcionarios(nome,telefone,endereco,sexo,dataNascimento,telefoneEmergencia) VALUES (?,?,?,?,?,?)");
+            PreparedStatement pstm = con.prepareStatement("UPDATE INTO funcionarios(nome,telefone,endereco,sexo,datadeNascimento,telefoneEmergencia) VALUES (?,?,?,?,?,?)");
 
 
         } catch (Exception e) {
@@ -67,24 +69,25 @@ public class JDBCFuncionario implements FuncionarioDAO{
             while(rs.next()){
                 int id = rs.getInt("id");
                 String nome = rs.getString("nome");
-                Integer telefone = rs.getInt("telefone");
+                int telefone = rs.getInt("telefone");
                 String endereco = rs.getString("endereco");
                 String sexo = rs.getString("sexo");
-                String sdataNascimento = rs.getString("dataNascimento");
-                Integer telefoneEmergencia = rs.getInt("telefoneEmergencia");
+                Date sdatadeNascimento = rs.getDate("datadeNascimento");
+                int telefoneEmergencia = rs.getInt("telefoneEmergencia");
 
-                //Date dataNascimento = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                /*SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 try {
-                    sdataNascimento = sdf.parse(sdataNascimento);
+                    dataNascimento = sdf.parse(sdataNascimento);
                 } catch (ParseException pe){
                     pe.printStackTrace();
-                }
-                DateTimeFormatter dataNascimento = new Date(sdataNascimento);
+                }*/
+                //LocalDate dataNascimento = new Date(sdataNascimento);
 
-                //SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-                //DateTimeFormatter dataNascimento = fmt.parse(sdataNascimento);
-                Funcionario funcionario = new Funcionario(id, nome, telefone, endereco, sexo, telefoneEmergencia);
+                //SimpleLocalDateFormat fmt = new SimpleLocalDateFormat("dd/MM/yyyy");
+                //LocalDateTimeFormatter dataNascimento = fmt.parse(sdataNascimento);
+                
+                Funcionario funcionario = new Funcionario(nome, telefone, endereco, sexo, datadeNascimento, telefoneEmergencia);
                 funcionarios.add(funcionario);
             }
             return funcionarios;

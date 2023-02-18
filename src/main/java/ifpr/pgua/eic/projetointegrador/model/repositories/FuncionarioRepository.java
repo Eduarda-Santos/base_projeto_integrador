@@ -1,7 +1,7 @@
 package ifpr.pgua.eic.projetointegrador.model.repositories;
 
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +21,7 @@ public class FuncionarioRepository {
         this.dao = dao;
     }
 
-    public Result adicionarFuncionario(String nome, int telefone, String endereco, String sexo, DateTimeFormatter datadeNascimento,
+    public Result adicionarFuncionario(String nome, int telefone, String endereco, String sexo, LocalDate datadeNascimento,
     int telefoneEmergencia){
         Optional<Funcionario> busca = funcionarios.stream().filter((fun)->fun.getNome().equals(nome)).findFirst();
     
@@ -33,7 +33,7 @@ public class FuncionarioRepository {
         return dao.create(funcionario);
     }
 
-    public Result editarFuncionario(String nome, int telefone, String endereco, String sexo, DateTimeFormatter datadeNascimento,
+    public Result editarFuncionario(String nome, int telefone, String endereco, String sexo, LocalDate datadeNascimento,
     int telefoneEmergencia){
         Optional<Funcionario> busca = funcionarios.stream().filter((fun)->fun.getNome().equals(nome)).findFirst();
     
@@ -52,7 +52,7 @@ public class FuncionarioRepository {
         return Result.fail("Funcionário não encontrado");
     }
 
-    public Result deletarFuncionario(String nome, int telefone, String endereco, String sexo, DateTimeFormatter datadeNascimento,
+    public Result deletarFuncionario(String nome, int telefone, String endereco, String sexo, LocalDate datadeNascimento,
     int telefoneEmergencia){
         Optional<Funcionario> busca = funcionarios.stream().filter((fun)->fun.getNome().equals(nome)).findFirst();
     

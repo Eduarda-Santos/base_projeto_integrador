@@ -2,7 +2,8 @@ package ifpr.pgua.eic.projetointegrador.controllers.viewmodels;
 
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
 import ifpr.pgua.eic.projetointegrador.model.daos.FuncionarioDAO;
@@ -24,7 +25,7 @@ public class TelaFuncionarioViewModel {
     private StringProperty telefoneProperty = new SimpleStringProperty();
     private StringProperty enderecoProperty = new SimpleStringProperty();
     private StringProperty sexoProperty = new SimpleStringProperty();
-    private ObjectProperty<DateTimeFormatter> datadeNascimentoProperty = new SimpleObjectProperty<>();
+    private ObjectProperty<Date> datadeNascimentoProperty = new SimpleObjectProperty<>();
     private StringProperty telefoneEmergenciaProperty = new SimpleStringProperty();
     private ObjectProperty<Result> alertProperty = new SimpleObjectProperty<>();
     private ObjectProperty<FuncionarioRow> selecionado = new SimpleObjectProperty<>();
@@ -82,7 +83,7 @@ public class TelaFuncionarioViewModel {
         return sexoProperty;
     }
 
-    public ObjectProperty<DateTimeFormatter> datadeNascimentoProperty() {
+    public ObjectProperty<Date> datadeNascimentoProperty() {
         return datadeNascimentoProperty;
     }
 
@@ -99,11 +100,13 @@ public class TelaFuncionarioViewModel {
         String sTelefone = telefoneProperty.getValue();
         String endereco = enderecoProperty.getValue();
         String sexo = sexoProperty.getValue();
-        DateTimeFormatter datadeNascimento = datadeNascimentoProperty.getValue();
+        Date sdatadeNascimento = datadeNascimentoProperty.getValue();
         String sTelefoneEmergencia = telefoneEmergenciaProperty.getValue();
         
         Integer telefone = Integer.valueOf(sTelefone);
         Integer telefoneEmergencia = Integer.valueOf(sTelefoneEmergencia);
+
+        LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         repository.adicionarFuncionario(nome, 0, endereco, sexo, datadeNascimento, 0);
         
@@ -115,12 +118,14 @@ public class TelaFuncionarioViewModel {
         String sTelefone = telefoneProperty.getValue();
         String endereco = enderecoProperty.getValue();
         String sexo = sexoProperty.getValue();
-        DateTimeFormatter datadeNascimento = datadeNascimentoProperty.getValue();
+        Date sdatadeNascimento = datadeNascimentoProperty.getValue();
         String sTelefoneEmergencia = telefoneEmergenciaProperty.getValue();
         Funcionario funcionario = selecionado.get().getFuncionario();
         
         Integer telefone = Integer.valueOf(sTelefone);
         Integer telefoneEmergencia = Integer.valueOf(sTelefoneEmergencia);
+
+        LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         repository.editarFuncionario(nome, 0, endereco, sexo, datadeNascimento, 0);
         
