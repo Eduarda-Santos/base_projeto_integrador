@@ -1,10 +1,14 @@
 package ifpr.pgua.eic.projetointegrador.controllers.viewmodels;
 
+import java.net.URL;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ResourceBundle;
 
+import ifpr.pgua.eic.projetointegrador.controllers.BaseController;
+import ifpr.pgua.eic.projetointegrador.controllers.TelaFuncionarios;
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
 import ifpr.pgua.eic.projetointegrador.model.daos.FuncionarioDAO;
 import ifpr.pgua.eic.projetointegrador.model.daos.JDBCFuncionario;
@@ -15,8 +19,10 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 

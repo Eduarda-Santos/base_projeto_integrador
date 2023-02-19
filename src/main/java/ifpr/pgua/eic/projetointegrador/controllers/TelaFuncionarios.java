@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.Initializable;
+import ifpr.pgua.eic.projetointegrador.model.results.Result;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,57 +22,56 @@ import ifpr.pgua.eic.projetointegrador.controllers.viewmodels.TelaFuncionarioVie
 public class TelaFuncionarios extends BaseController {
 
     @FXML
-    private TextField tfNome;
+    public TextField tfNome;
 
     @FXML
-    private TableColumn<FuncionarioRow, String> tbcNome;
+    public TableColumn<FuncionarioRow, String> tbcNome;
 
     @FXML
-    private TableColumn<FuncionarioRow, Integer> tbcTelefone;
+    public TableColumn<FuncionarioRow, Integer> tbcTelefone;
 
     @FXML
-    private TableColumn<FuncionarioRow, String> tbcEndereco;
+    public TableColumn<FuncionarioRow, String> tbcEndereco;
 
     @FXML
-    private TableColumn<FuncionarioRow, String> tbcSexo;
+    public TableColumn<FuncionarioRow, String> tbcSexo;
 
     @FXML
-    private TableColumn<FuncionarioRow, Integer> tbcTelefoneEmergencia;
+    public TableColumn<FuncionarioRow, Integer> tbcTelefoneEmergencia;
 
     @FXML
-    private TableView<FuncionarioRow> tbFuncionarios;
+    public TableView<FuncionarioRow> tbFuncionarios;
 
     @FXML
-    private TextField tfTelefone;
+    public TextField tfTelefone;
 
     @FXML
-    private TextField tfEndereco;
+    public TextField tfEndereco;
 
     @FXML
-    private TextField tfSexo;
+    public TextField tfSexo;
 
     @FXML
     private DatePicker dpDataNascimento;
 
     @FXML
-    private TextField tfTelefoneEmergencia;
+    public TextField tfTelefoneEmergencia;
 
     @FXML
-    private Button btCadastrar;
+    public Button btCadastrar;
     
     @FXML
     private Button btLimpar;
 
-    private TelaFuncionarioViewModel viewModel;
+    public TelaFuncionarioViewModel viewModel;
 
     public TelaFuncionarios(TelaFuncionarioViewModel viewModel){
         this.viewModel = viewModel;
     }
 
-    @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         
-
+    
         //define quais serão as propriedades que servirão para preencher
         //o valor da coluna. Note que o nome da propriedade deve possuir
         //um get equivalente no modelo que representa a linha da tabela.
@@ -81,18 +81,18 @@ public class TelaFuncionarios extends BaseController {
         tbcEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
         tbcSexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
         tbcTelefoneEmergencia.setCellValueFactory(new PropertyValueFactory<>("telefoneEmergencia"));
-
+    
         //liga o conjunto de itens da tabela com a lista de clientes do viewmodel
         tbFuncionarios.setItems(viewModel.getFuncionarios());
-
+    
         //liga a propriedade selecionado do viewmodel com a tabela
         viewModel.selecionadoProperty().bind(tbFuncionarios.getSelectionModel().selectedItemProperty());
-
-        viewModel.alertProperty().addListener((ChangeListener<Result>) (observable, oldVal, newVal) -> {
+    
+        /*viewModel.alertProperty().addListener((ChangeListener<Result>) (observable, oldVal, newVal) -> {
             // TODO Auto-generated method stub
-            showMessage(newVal);
-        });
-
+            BaseController.showMessage(newVal);
+        });*/
+    
         //liga a propriedade texto do textfield nome com a propriedade do viewmodel
         tfNome.textProperty().bindBidirectional(viewModel.nomeProperty());
         //liga a propriedade editavel do textfield com a propriedade do viewmodel
@@ -101,16 +101,16 @@ public class TelaFuncionarios extends BaseController {
         
         tfTelefone.textProperty().bindBidirectional(viewModel.telefoneProperty());
         tfTelefone.editableProperty().bind(viewModel.podeEditarProperty());
-
+    
         tfEndereco.textProperty().bindBidirectional(viewModel.enderecoProperty());
         tfEndereco.textProperty().bindBidirectional(viewModel.enderecoProperty());
-
+    
         tfSexo.textProperty().bindBidirectional(viewModel.sexoProperty());
         tfSexo.textProperty().bindBidirectional(viewModel.sexoProperty());
-
+    
         tfTelefoneEmergencia.textProperty().bindBidirectional(viewModel.telefoneEmergenciaProperty());
         tfTelefoneEmergencia.textProperty().bindBidirectional(viewModel.telefoneEmergenciaProperty());
-
+    
         btCadastrar.textProperty().bind(viewModel.operacaoProperty());
     }
 

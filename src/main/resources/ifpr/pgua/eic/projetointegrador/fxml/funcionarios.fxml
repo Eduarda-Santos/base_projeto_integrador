@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 
 <VBox prefHeight="600.0" prefWidth="800.0" spacing="10.0" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ifpr.pgua.eic.projetointegrador.controllers.TelaFuncionarios">
     <children>
@@ -26,8 +27,10 @@
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="80.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="732.0" minWidth="10.0" prefWidth="293.0" />
-              <ColumnConstraints hgrow="SOMETIMES" maxWidth="732.0" minWidth="10.0" prefWidth="82.0" />
-              <ColumnConstraints hgrow="SOMETIMES" maxWidth="732.0" minWidth="10.0" prefWidth="357.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="732.0" minWidth="10.0" prefWidth="82.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="732.0" minWidth="10.0" prefWidth="357.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="832.0" minWidth="10.0" prefWidth="82.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="832.0" minWidth="10.0" prefWidth="357.0" />
           </columnConstraints>
           <rowConstraints>
             <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
@@ -44,11 +47,11 @@
               <TextField fx:id="tfEndereco" promptText="Digite o endereço" GridPane.columnIndex="1" GridPane.rowIndex="1" />
               <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="80.0" text="Sexo:" GridPane.rowIndex="1" />
               <TextField fx:id="tfSexo" promptText="Digite o sexo" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="82.0" text="Data de Nascimento:" GridPane.rowIndex="1" />
+              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="88.0" text="Data de Nascimento:" GridPane.rowIndex="1" />
               <DatePicker fx:id="dpDatadeNascimento" prefHeight="24.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="85.0" text="Telefone de Emergência:" GridPane.rowIndex="1" />
+              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="100.0" text="Telefone de Emergência:" GridPane.rowIndex="1" />
               <TextField fx:id="tfTelefoneEmergencia" promptText="Digite o telefone de emergência" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="91.0" text="Telefone de Emergência:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+              <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="110.0" text="Telefone de Emergência:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                  <children>
                     <MFXButton fx:id="btCadastrar" buttonType="RAISED" onAction="#cadastrar" text="Cadastrar" />
@@ -57,13 +60,14 @@
               </HBox>
            </children>
         </GridPane>
-        <TableView fx:id="tbClientes" prefHeight="424.0" prefWidth="800.0" onMouseClicked="#atualizar">
+        <TableView fx:id="tbFuncionarios" prefHeight="424.0" prefWidth="600.0" onMouseClicked="#editar">
           <columns>
             <TableColumn fx:id="tbcNome" prefWidth="278.0" text="Nome" />
             <TableColumn fx:id="tbcTelefone" prefWidth="137.0" text="Telefone" />
-            <TableColumn fx:id="tbcEndereço" prefWidth="146.0" text="Endereço" />
-            <TableColumn fx:id="tbcSexo" prefWidth="143.0" text="Sexo" />
-            <TableColumn fx:id="tbcTelefoneEmergencia" prefWidth="143.0" text="Telefone de Emergência" />
+            <TableColumn fx:id="tbcEndereço" prefWidth="143.0" text="Endereço" />
+            <TableColumn fx:id="tbcSexo" prefWidth="146.0" text="Sexo" />
+            <TableColumn fx:id="tbcDatadeNascimento" prefWidth="157.0" text="Data de Nascimento" />
+            <TableColumn fx:id="tbcTelefoneEmergencia" prefWidth="177.0" text="Telefone de Emergência" />
           </columns>
         </TableView>
      </children>
