@@ -43,15 +43,14 @@
               <TextField fx:id="tfNome" promptText="Digite o nome do cliente" GridPane.columnIndex="1" />
               <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="92.0" text="Telefone:" GridPane.columnIndex="2" />
               <TextField fx:id="tfTelefone" promptText="Digite o telefone" GridPane.columnIndex="3" />
-              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="77.0" text="Enedereço:" GridPane.rowIndex="1" />
-              <TextField fx:id="tfEndereco" promptText="Digite o endereço" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="80.0" text="Sexo:" GridPane.rowIndex="1" />
-              <TextField fx:id="tfSexo" promptText="Digite o sexo" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="88.0" text="Data de Nascimento:" GridPane.rowIndex="1" />
-              <DatePicker fx:id="dpDatadeNascimento" prefHeight="24.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="77.0" text="Endereço:" GridPane.rowIndex="2" />
+              <TextField fx:id="tfEndereco" promptText="Digite o endereço" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="80.0" text="Sexo:" GridPane.rowIndex="3" />
+              <TextField fx:id="tfSexo" promptText="Digite o sexo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="88.0" text="Data de Nascimento:" GridPane.rowIndex="4" />
+              <DatePicker fx:id="dpDatadeNascimento" prefHeight="16.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
               <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="100.0" text="Telefone de Emergência:" GridPane.rowIndex="1" />
-              <TextField fx:id="tfTelefoneEmergencia" promptText="Digite o telefone de emergência" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-              <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="110.0" text="Telefone de Emergência:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+              <TextField fx:id="tfTelefoneEmergencia" promptText="Digite o telefone de emergência" GridPane.columnIndex="1" GridPane.rowIndex="1" />
               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                  <children>
                     <MFXButton fx:id="btCadastrar" buttonType="RAISED" onAction="#cadastrar" text="Cadastrar" />

@@ -38,7 +38,7 @@ public class TelaFuncionarioViewModel {
 
     private StringProperty operacao = new SimpleStringProperty("Cadastrar");
     private BooleanProperty podeEditar = new SimpleBooleanProperty(true);
-    private boolean atualizar = false;
+    private boolean editar = false;
 
     private ObservableList<FuncionarioRow> funcionarios = FXCollections.observableArrayList();
     
@@ -114,28 +114,29 @@ public class TelaFuncionarioViewModel {
 
         LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-        repository.adicionarFuncionario(nome, 0, endereco, sexo, datadeNascimento, 0);
-        
+        if(editar){
+            repository.editarFuncionario(nome, 0, endereco, sexo, datadeNascimento, 0);
+        }
+        else{
+            repository.adicionarFuncionario(nome, 0, endereco, sexo, datadeNascimento, 0);
+        }
+        updateList();
         limpar();
     }
 
     public void editar(){
-        String nome = nomeProperty.getValue();
+        operacao.setValue("Editar");
+        podeEditar.setValue(false);
+        editar = true;
+        Funcionario funcionario = selecionado.get().getFuncionario();
+        nomeProperty.setValue(funcionario.getNome());
+        enderecoProperty.setValue(funcionario.getEndereco());
+        sexoProperty.setValue(funcionario.getSexo());
         String sTelefone = telefoneProperty.getValue();
-        String endereco = enderecoProperty.getValue();
-        String sexo = sexoProperty.getValue();
         Date sdatadeNascimento = datadeNascimentoProperty.getValue();
         String sTelefoneEmergencia = telefoneEmergenciaProperty.getValue();
-        Funcionario funcionario = selecionado.get().getFuncionario();
-        
-        Integer telefone = Integer.valueOf(sTelefone);
-        Integer telefoneEmergencia = Integer.valueOf(sTelefoneEmergencia);
 
-        LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-        repository.editarFuncionario(nome, 0, endereco, sexo, datadeNascimento, 0);
-        
-        limpar();
+        alertProperty.setValue(Result.fail("Teste"));
     }
     
     public void limpar(){
