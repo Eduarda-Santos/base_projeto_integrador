@@ -7,3 +7,11 @@ CREATE TABLE IF NOT EXISTS funcionarios(
     dataNascimento INTEGER NOT NULL,
     telefoneEmergencia TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS usuario (
+    id_usuario int AUTO_INCREMENT PRIMARY KEY,
+    nome_usuario varchar(45),
+    senha_usuario varchar(45)
+);
+
+INSERT INTO usuario (nome_usuario, senha_usuario) VALUES ('admin', '1234');

@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import ifpr.pgua.eic.projetointegrador.controllers.BaseController;
@@ -15,6 +16,7 @@ import ifpr.pgua.eic.projetointegrador.model.daos.JDBCFuncionario;
 import ifpr.pgua.eic.projetointegrador.model.entities.Funcionario;
 import ifpr.pgua.eic.projetointegrador.model.repositories.FuncionarioRepository;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
+import ifpr.pgua.eic.projetointegrador.model.results.SuccessResult;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -25,6 +27,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import static java.lang.Integer.parseInt;;
 
 public class TelaFuncionarioViewModel {
     private StringProperty nomeProperty = new SimpleStringProperty();
@@ -103,23 +106,35 @@ public class TelaFuncionarioViewModel {
     
     public void cadastrar(){
         String nome = nomeProperty.getValue();
-        String sTelefone = telefoneProperty.getValue();
+        int telefone = Integer.parseInt(telefoneProperty.getValue());
         String endereco = enderecoProperty.getValue();
         String sexo = sexoProperty.getValue();
         Date sdatadeNascimento = datadeNascimentoProperty.getValue();
-        String sTelefoneEmergencia = telefoneEmergenciaProperty.getValue();
-        
-        Integer telefone = Integer.valueOf(sTelefone);
-        Integer telefoneEmergencia = Integer.valueOf(sTelefoneEmergencia);
-
         LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
+        //String sTelefoneEmergencia = telefoneEmergenciaProperty.getValue();
+
+        //int telefone = Integer.parseInt(sTelefone);
+        int telefoneEmergencia = Integer.parseInt(telefoneEmergenciaProperty.getValue());
+
+        //int telefone = Integer.parseInt(sTelefone);
+        //int telefoneEmergencia = Integer.parseInt(sTelefoneEmergencia);
+
+        
+        //LocalDate datadeNascimento = null;
+        repository.adicionarFuncionario(nome, telefone, endereco, sexo, datadeNascimento, telefoneEmergencia);
+            
+        //Result msg = (null);
+        /*
         if(editar){
-            repository.editarFuncionario(nome, 0, endereco, sexo, datadeNascimento, 0);
+            repository.editarFuncionario(nome, telefone, endereco, sexo, datadeNascimento, telefoneEmergencia);
+            Result msg = Result.success("Funcionário Editado com sucesso!");
         }
         else{
-            repository.adicionarFuncionario(nome, 0, endereco, sexo, datadeNascimento, 0);
-        }
+            repository.adicionarFuncionario(nome, telefone, endereco, sexo, datadeNascimento, telefoneEmergencia);
+            //msg = Result.success("Funcionário Cadastrado com sucesso!");
+        }*/
+        //return msg;
         updateList();
         limpar();
     }
@@ -135,6 +150,11 @@ public class TelaFuncionarioViewModel {
         String sTelefone = telefoneProperty.getValue();
         Date sdatadeNascimento = datadeNascimentoProperty.getValue();
         String sTelefoneEmergencia = telefoneEmergenciaProperty.getValue();
+
+        Integer telefone = Integer.valueOf(sTelefone);
+        Integer telefoneEmergencia = Integer.valueOf(sTelefoneEmergencia);
+
+        LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         alertProperty.setValue(Result.fail("Teste"));
     }

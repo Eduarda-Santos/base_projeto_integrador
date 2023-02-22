@@ -1,5 +1,6 @@
 package ifpr.pgua.eic.projetointegrador.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -10,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.Initializable;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
+import ifpr.pgua.eic.projetointegrador.model.results.SuccessResult;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -103,13 +105,13 @@ public class TelaFuncionarios extends BaseController {
         tfTelefone.editableProperty().bind(viewModel.podeEditarProperty());
     
         tfEndereco.textProperty().bindBidirectional(viewModel.enderecoProperty());
-        tfEndereco.textProperty().bindBidirectional(viewModel.enderecoProperty());
+        tfEndereco.editableProperty().bind(viewModel.podeEditarProperty());
     
         tfSexo.textProperty().bindBidirectional(viewModel.sexoProperty());
-        tfSexo.textProperty().bindBidirectional(viewModel.sexoProperty());
+        tfSexo.editableProperty().bind(viewModel.podeEditarProperty());
     
         tfTelefoneEmergencia.textProperty().bindBidirectional(viewModel.telefoneEmergenciaProperty());
-        tfTelefoneEmergencia.textProperty().bindBidirectional(viewModel.telefoneEmergenciaProperty());
+        tfTelefoneEmergencia.editableProperty().bind(viewModel.podeEditarProperty());
     
         btCadastrar.textProperty().bind(viewModel.operacaoProperty());
     }
@@ -117,6 +119,7 @@ public class TelaFuncionarios extends BaseController {
     @FXML
     private void cadastrar(){
         viewModel.cadastrar();
+        //showMessage(Result msg);
     }
 
     @FXML

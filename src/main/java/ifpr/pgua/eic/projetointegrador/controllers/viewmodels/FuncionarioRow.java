@@ -37,10 +37,10 @@ public class FuncionarioRow {
     public StringProperty sexoProperty(){
         return new SimpleStringProperty(String.valueOf(funcionario.getSexo()));
     }
-    /*
+    
     public StringProperty datadeNascimentoProperty(){
         return new SimpleStringProperty(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(funcionario.getDatadeNascimento()));
-    }*/
+    }
 
     public StringProperty telefoneEmergenciaProperty(){
         return new SimpleStringProperty(String.valueOf(funcionario.getTelefoneEmergencia()));
