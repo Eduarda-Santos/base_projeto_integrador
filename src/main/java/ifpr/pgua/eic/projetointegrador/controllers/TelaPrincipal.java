@@ -2,6 +2,7 @@ package ifpr.pgua.eic.projetointegrador.controllers;
 
 import ifpr.pgua.eic.projetointegrador.App;
 import ifpr.pgua.eic.projetointegrador.utils.Navigator.BorderPaneRegion;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class TelaPrincipal extends BaseController {
@@ -11,14 +12,12 @@ public class TelaPrincipal extends BaseController {
         App.changeScreenRegion("FUNCIONARIOS", BorderPaneRegion.CENTER);
     }
 
-    @FXML
-    private void editarFuncionarios(){
-        App.changeScreenRegion("EDITAR", BorderPaneRegion.CENTER);
+    public void dispose(ActionEvent e) {
+        dispose(e);
     }
 
-    /*
-    @FXML
-    private void excluirFuncionarios(){
-        App.changeScreenRegion("FUNCIONARIOS", BorderPaneRegion.CENTER);
-    }*/
+    public void setVisible(boolean b) {
+        setVisible(false);
+    }
+
 }

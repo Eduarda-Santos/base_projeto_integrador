@@ -4,6 +4,8 @@ public class Usuario {
     private int id_usuario;
     private String nome_usuario, senha_usuario;
     
+    public Usuario(String nome, String senha) {
+    }
     public int getId_usuario() {
         return id_usuario;
     }
