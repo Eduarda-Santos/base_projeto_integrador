@@ -23,30 +23,21 @@
               <Label alignment="CENTER" layoutX="1.0" layoutY="4.0" prefHeight="16.0" prefWidth="780.0" text="Login" />
            </children>
         </Pane>
-        <GridPane alignment="CENTER_RIGHT" hgap="5.0" prefHeight="155.0" prefWidth="800.0">
-          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="80.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="732.0" minWidth="10.0" prefWidth="293.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="732.0" minWidth="10.0" prefWidth="82.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="732.0" minWidth="10.0" prefWidth="357.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="832.0" minWidth="10.0" prefWidth="82.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="832.0" minWidth="10.0" prefWidth="357.0" />
-          </columnConstraints>
+        <GridPane alignment="CENTER" hgap="5.0" prefHeight="155.0" prefWidth="800.0">
           <rowConstraints>
             <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
           </rowConstraints>
            <children>
-              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="74.0" text="Nome:" />
+              <Label alignment="CENTER" prefHeight="16.0" prefWidth="74.0" text="Nome:" />
               <TextField fx:id="tfNomeUsuario" GridPane.columnIndex="1" />
               <TextField fx:id="tfNomeUsuario" promptText="Digite o nome do usuário" GridPane.columnIndex="1" />
-              <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="92.0" text="Senha:" GridPane.columnIndex="2" />
+              <Label alignment="CENTER" prefHeight="16.0" prefWidth="92.0" text="Senha:" GridPane.columnIndex="2" />
               <TextField fx:id="tfSenhaUsuario" promptText="Digite a senha do usuário" GridPane.columnIndex="2" />
-              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+              <HBox alignment="CENTER"  spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                  <children>
                     <MFXButton fx:id="btLogin" buttonType="RAISED" onAction="#login" text="Login" />
-                    <MFXButton buttonType="RAISED" onAction="#limpar" text="Limpar" />
                  </children>
               </HBox>
            </children>

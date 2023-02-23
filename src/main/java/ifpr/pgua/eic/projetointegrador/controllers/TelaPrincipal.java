@@ -8,6 +8,11 @@ import javafx.fxml.FXML;
 public class TelaPrincipal extends BaseController {
 
     @FXML
+    private void carregarAreas(){
+        App.changeScreenRegion("AREAS", BorderPaneRegion.CENTER);
+    }
+    
+    @FXML
     private void carregarFuncionarios(){
         App.changeScreenRegion("FUNCIONARIOS", BorderPaneRegion.CENTER);
     }

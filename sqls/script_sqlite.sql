@@ -14,4 +14,9 @@ CREATE TABLE IF NOT EXISTS usuario (
     senha_usuario varchar(45)
 );
 
+CREATE TABLE IF NOT EXISTS areas(
+    id INTEGER PRIMARY KEY, 
+    nome TEXT NOT NULL
+);
+
 INSERT INTO usuario (nome_usuario, senha_usuario) VALUES ('admin', '1234');

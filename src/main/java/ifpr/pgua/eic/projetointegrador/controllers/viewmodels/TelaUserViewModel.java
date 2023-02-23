@@ -33,28 +33,45 @@ public class TelaUserViewModel {
         return senhaProperty;
     }
 
+    private UsuarioDAO dao;
+
+    public void UsuarioRepository(UsuarioDAO dao){
+        this.dao = dao;
+    }
+
+    //UsuarioDAO usuarioDAO = new UsuarioDAO();
+
     public void login(){
-        String nome = nomeProperty.getValue();
-        String senha = senhaProperty.getValue();
+        try {
+            
+            String nome = nomeProperty.getValue();
+            String senha = senhaProperty.getValue();
 
-        Usuario usuario = new Usuario(nome, senha);
-        usuario.setNome_usuario(nome);
-        usuario.setSenha_usuario(senha);
+            //usuarioRepository.setNome_usuario(nome);
+            //usuarioRepository.setSenha_usuario(senha);
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        ResultSet rsUsuario = usuarioDAO.autenticacaoUsuario(usuario);
-        //resultset sempre é utilizado quando se trabalha com consulta no banco
+            //UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        if(rsUsuario.next()){
-            TelaPrincipal objPrincipal = new TelaPrincipal();
-            objPrincipal.setVisible(true);
+            Usuario usuario = new Usuario(nome, senha);
 
-            TelaUserViewModel.dispose(true);
+            ResultSet rsUsuario = dao.autenticacaoUsuario(usuario);
+            //resultset sempre é utilizado quando se trabalha com consulta no banco
+
+            if(rsUsuario.next()){
+                TelaPrincipal objPrincipal = new TelaPrincipal();
+                objPrincipal.setVisible(true);
+
+                TelaUserViewModel.dispose(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Usuário ou senha inválidas");
+            }
+            repository.login(nome, senha);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Tela Login View");
+            
         }
-        else{
-            JOptionPane.showMessageDialog(null,"Usuário ou senha inválidas");
-        }
-        repository.login(nome, senha);
     }
 
     public static void dispose(boolean b) {

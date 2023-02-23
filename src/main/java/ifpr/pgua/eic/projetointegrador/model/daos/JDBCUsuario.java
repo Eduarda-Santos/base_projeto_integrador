@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import ifpr.pgua.eic.projetointegrador.controllers.TelaPrincipal;
+import ifpr.pgua.eic.projetointegrador.controllers.viewmodels.TelaUserViewModel;
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
 import ifpr.pgua.eic.projetointegrador.model.entities.Usuario;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
@@ -51,28 +53,26 @@ public class JDBCUsuario implements UsuarioDAO{
     }
 
     public ResultSet autenticacaoUsuario(Usuario usuario){
-        try {
         
-            Connection con = fabricaConexoes.getConnection();
+        //ArrayList<Usuario> usuarios = new ArrayList<>();
+        try {
+            
+        Connection con = fabricaConexoes.getConnection();
 
-            try{
-                String sql = ("SELECT * from usuario where nome_usuario = ? and senha_usuario = ? ");
-                PreparedStatement pstm = con.prepareStatement(sql);
-                pstm.setString(1, usuario.getNome_usuario());
-                pstm.setString(2, usuario.getSenha_usuario());
-                
-                ResultSet rs = pstm.executeQuery();
-                return rs;
-            }catch(SQLException erro){
-                JOptionPane.showMessageDialog(null, erro, null, 0);
-                return null;
-            }
+        String sql = ("SELECT * from usuario where nome_usuario = ? and senha_usuario = ? ");
+        
+        PreparedStatement pstm = con.prepareStatement(sql);
+        pstm.setString(1, usuario.getNome_usuario());
+        pstm.setString(2, usuario.getSenha_usuario());
+        
+        ResultSet rs = pstm.executeQuery();
+
+        return rs;
 
         } catch (Exception e) {
             // TODO: handle exception
-        }
-        return null;
-
+            return null;
+        }     
 
     }
     

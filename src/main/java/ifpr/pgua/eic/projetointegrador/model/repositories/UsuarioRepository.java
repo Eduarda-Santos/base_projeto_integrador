@@ -19,6 +19,5 @@ public class UsuarioRepository {
 
         Usuario usuario = new Usuario(nome, senha);
         return dao.autenticacaoUsuario(usuario);
-        
     }
 }
