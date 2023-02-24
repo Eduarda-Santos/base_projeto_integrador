@@ -53,8 +53,8 @@
               <TextField fx:id="tfTelefoneEmergencia" promptText="Digite o telefone de emergência" GridPane.columnIndex="1" GridPane.rowIndex="1" />
               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                  <children>
-                    <MFXButton fx:id="btCadastrar" buttonType="RAISED" onAction="#cadastrar" text="Cadastrar" />
-                    <MFXButton buttonType="RAISED" onAction="#limpar" text="Limpar" />
+                    <MFXButton fx:id="btCadastrar" onAction="#cadastrar" text="Cadastrar" />
+                    <MFXButton onAction="#limpar" text="Limpar" />
                  </children>
               </HBox>
            </children>
@@ -63,7 +63,7 @@
           <columns>
             <TableColumn fx:id="tbcNome" prefWidth="278.0" text="Nome" />
             <TableColumn fx:id="tbcTelefone" prefWidth="137.0" text="Telefone" />
-            <TableColumn fx:id="tbcEndereço" prefWidth="143.0" text="Endereço" />
+            <TableColumn fx:id="tbcEndereco" prefWidth="143.0" text="Endereço" />
             <TableColumn fx:id="tbcSexo" prefWidth="146.0" text="Sexo" />
             <TableColumn fx:id="tbcDatadeNascimento" prefWidth="157.0" text="Data de Nascimento" />
             <TableColumn fx:id="tbcTelefoneEmergencia" prefWidth="177.0" text="Telefone de Emergência" />

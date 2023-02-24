@@ -12,35 +12,35 @@ public class Funcionario {
     private LocalDate datadeNascimento;
     private int telefoneEmergencia;
     
-    public Funcionario(String nome, int telefone, String endereco, String sexo, LocalDate datadeNascimento,
+    public Funcionario(String nome, int telefone, String endereco, String sexo,
             int telefoneEmergencia) {
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
         this.sexo = sexo;
-        this.datadeNascimento = datadeNascimento;
+        //this.datadeNascimento = datadeNascimento;
         this.telefoneEmergencia = telefoneEmergencia;
     }
 
-    public Funcionario(int id, String nome, int telefone, String endereco, String sexo, LocalDate datadeNascimento,
+    public Funcionario(int id, String nome, int telefone, String endereco, String sexo,
             int telefoneEmergencia) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
         this.sexo = sexo;
-        this.datadeNascimento = datadeNascimento;
+        //this.datadeNascimento = datadeNascimento;
         this.telefoneEmergencia = telefoneEmergencia;
     }
-    
-    public Funcionario(int id, String nome, int telefone, String endereco, String sexo, int telefoneEmergencia) {
-        this.id = id;
+    /*
+    public Funcionario(String nome, int telefone, String endereco, String sexo, int telefoneEmergencia) {
+        //this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
         this.sexo = sexo;
         this.telefoneEmergencia = telefoneEmergencia;
-    }
+    }*/
 
     public int getId() {
         return id;

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -31,13 +32,22 @@ public class JDBCFuncionario implements FuncionarioDAO{
         try {
             Connection con = fabricaConexoes.getConnection();
 
-            PreparedStatement pstm = con.prepareStatement("INSERT INTO funcionarios(nome,telefone,endereco,sexo,datadeNascimento,telefoneEmergencia) VALUES (?,?,?,?,?,?)");
+            PreparedStatement pstm = con.prepareStatement("INSERT INTO funcionarios(nome,telefone,endereco,sexo,telefoneEmergencia) VALUES (?,?,?,?,?)");
 
+            pstm.setString(1, funcionario.getNome());
+            pstm.setInt(2, funcionario.getTelefone());
+            pstm.setString(3, funcionario.getEndereco());
+            pstm.setString(4, funcionario.getSexo());
+            pstm.setInt(5, funcionario.getTelefoneEmergencia());
 
+            pstm.executeUpdate();
+            pstm.close();
+            con.close();
+
+            return Result.success("Funcionário cadastrado");
         } catch (Exception e) {
-            // TODO: handle exception
+            return Result.fail(e.getMessage());
         }
-        return null;
     }
 
     @Override
@@ -45,7 +55,7 @@ public class JDBCFuncionario implements FuncionarioDAO{
         try {
             Connection con = fabricaConexoes.getConnection();
 
-            PreparedStatement pstm = con.prepareStatement("UPDATE INTO funcionarios(nome,telefone,endereco,sexo,datadeNascimento,telefoneEmergencia) VALUES (?,?,?,?,?,?)");
+            PreparedStatement pstm = con.prepareStatement("UPDATE INTO funcionarios(nome,telefone,endereco,sexo,telefoneEmergencia) VALUES (?,?,?,?,?)");
 
 
         } catch (Exception e) {
@@ -55,7 +65,7 @@ public class JDBCFuncionario implements FuncionarioDAO{
     }
 
     @Override
-    public ArrayList<Funcionario> listAll() {
+    public List<Funcionario> listAll() {
         try{
             //criando uma conexão
             Connection con = fabricaConexoes.getConnection(); 
@@ -72,10 +82,10 @@ public class JDBCFuncionario implements FuncionarioDAO{
                 int telefone = rs.getInt("telefone");
                 String endereco = rs.getString("endereco");
                 String sexo = rs.getString("sexo");
-                Date sdatadeNascimento = rs.getDate("datadeNascimento");
+                //Date sdatadeNascimento = rs.getDate("datadeNascimento");
                 int telefoneEmergencia = rs.getInt("telefoneEmergencia");
 
-                LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                //LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 /*SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 try {
                     dataNascimento = sdf.parse(sdataNascimento);
@@ -86,15 +96,18 @@ public class JDBCFuncionario implements FuncionarioDAO{
 
                 //SimpleLocalDateFormat fmt = new SimpleLocalDateFormat("dd/MM/yyyy");
                 //LocalDateTimeFormatter dataNascimento = fmt.parse(sdataNascimento);
-                
-                Funcionario funcionario = new Funcionario(nome, telefone, endereco, sexo, datadeNascimento, telefoneEmergencia);
-                funcionarios.add(funcionario);
+                //LocalDate datadeNascimento = null;
+
+                Funcionario funcionario = new Funcionario(nome, telefone, endereco, sexo, telefoneEmergencia);
+                funcionarios.add(funcionario);                
             }
+            rs.close();
+            con.close();
             return funcionarios;
 
         }catch(SQLException e){
             System.out.println(e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 

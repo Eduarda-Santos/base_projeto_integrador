@@ -18,8 +18,11 @@ import ifpr.pgua.eic.projetointegrador.model.repositories.FuncionarioRepository;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
 import ifpr.pgua.eic.projetointegrador.model.results.SuccessResult;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -30,11 +33,12 @@ import javafx.beans.property.SimpleStringProperty;
 import static java.lang.Integer.parseInt;;
 
 public class TelaFuncionarioViewModel {
+    private StringProperty idProperty = new SimpleStringProperty(); 
     private StringProperty nomeProperty = new SimpleStringProperty();
     private StringProperty telefoneProperty = new SimpleStringProperty();
     private StringProperty enderecoProperty = new SimpleStringProperty();
     private StringProperty sexoProperty = new SimpleStringProperty();
-    private ObjectProperty<Date> datadeNascimentoProperty = new SimpleObjectProperty<>();
+    private ObjectProperty<LocalDate> datadeNascimentoProperty = new SimpleObjectProperty<>();
     private StringProperty telefoneEmergenciaProperty = new SimpleStringProperty();
     private ObjectProperty<Result> alertProperty = new SimpleObjectProperty<>();
     private ObjectProperty<FuncionarioRow> selecionado = new SimpleObjectProperty<>();
@@ -61,7 +65,7 @@ public class TelaFuncionarioViewModel {
     }
 
     public ObservableList<FuncionarioRow> getFuncionarios(){
-        return this.funcionarios;
+        return funcionarios;
     }
     
     public ObjectProperty<Result> alertProperty() {
@@ -77,66 +81,67 @@ public class TelaFuncionarioViewModel {
     }
 
     public StringProperty nomeProperty(){
-        return nomeProperty;
+        return this.nomeProperty;
     }
 
     public StringProperty telefoneProperty(){
-        return telefoneProperty;
+        return this.telefoneProperty;
     }
 
     public StringProperty enderecoProperty(){
-        return enderecoProperty;
+        return this.enderecoProperty;
     }
 
     public StringProperty sexoProperty(){
-        return sexoProperty;
+        return this.sexoProperty;
     }
 
-    public ObjectProperty<Date> datadeNascimentoProperty() {
+    
+    public ObjectProperty<LocalDate> datadeNascimentoProperty() {
         return datadeNascimentoProperty;
     }
 
     public StringProperty telefoneEmergenciaProperty(){
-        return telefoneEmergenciaProperty;
+        return this.telefoneEmergenciaProperty;
     }
 
     public ObjectProperty<FuncionarioRow> selecionadoProperty() {
         return selecionado;
     }
     
-    public void cadastrar(){
+    public Result cadastrar(){
         String nome = nomeProperty.getValue();
-        int telefone = Integer.parseInt(telefoneProperty.getValue());
+        int telefone = parseInt(telefoneProperty.getValue());
         String endereco = enderecoProperty.getValue();
         String sexo = sexoProperty.getValue();
-        Date sdatadeNascimento = datadeNascimentoProperty.getValue();
-        LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-        //String sTelefoneEmergencia = telefoneEmergenciaProperty.getValue();
-
-        //int telefone = Integer.parseInt(sTelefone);
-        int telefoneEmergencia = Integer.parseInt(telefoneEmergenciaProperty.getValue());
-
-        //int telefone = Integer.parseInt(sTelefone);
-        //int telefoneEmergencia = Integer.parseInt(sTelefoneEmergencia);
+        //Date sdatadeNascimento = datadeNascimentoProperty.getValue();
+        LocalDate datadeNascimento = datadeNascimentoProperty.getValue();
+        int telefoneEmergencia = parseInt(telefoneEmergenciaProperty.getValue());
 
         
         //LocalDate datadeNascimento = null;
-        repository.adicionarFuncionario(nome, telefone, endereco, sexo, datadeNascimento, telefoneEmergencia);
-            
-        //Result msg = (null);
-        /*
+        //repository.adicionarFuncionario(nome, telefone, endereco, sexo, datadeNascimento, telefoneEmergencia);
+        //repository.adicionarFuncionario(nome, telefone, endereco, sexo, telefoneEmergencia);
+         
+        Result resultado = null;
+        
         if(editar){
-            repository.editarFuncionario(nome, telefone, endereco, sexo, datadeNascimento, telefoneEmergencia);
-            Result msg = Result.success("Funcionário Editado com sucesso!");
+            repository.editarFuncionario(nome, telefone, endereco, sexo, telefoneEmergencia);
+            //Result msg = Result.success("Funcionário Editado com sucesso!");
         }
         else{
-            repository.adicionarFuncionario(nome, telefone, endereco, sexo, datadeNascimento, telefoneEmergencia);
+            resultado = repository.adicionarFuncionario(nome, telefone, endereco, sexo, telefoneEmergencia);
             //msg = Result.success("Funcionário Cadastrado com sucesso!");
-        }*/
+        }
         //return msg;
         updateList();
         limpar();
+
+        if(resultado instanceof SuccessResult){
+            updateList();
+            limpar();
+        }
+        return resultado;
     }
 
     public void editar(){
@@ -145,26 +150,27 @@ public class TelaFuncionarioViewModel {
         editar = true;
         Funcionario funcionario = selecionado.get().getFuncionario();
         nomeProperty.setValue(funcionario.getNome());
+        //telefoneProperty.setValue(funcionario.getTelefone());
         enderecoProperty.setValue(funcionario.getEndereco());
         sexoProperty.setValue(funcionario.getSexo());
-        String sTelefone = telefoneProperty.getValue();
-        Date sdatadeNascimento = datadeNascimentoProperty.getValue();
-        String sTelefoneEmergencia = telefoneEmergenciaProperty.getValue();
-
-        Integer telefone = Integer.valueOf(sTelefone);
-        Integer telefoneEmergencia = Integer.valueOf(sTelefoneEmergencia);
-
-        LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        //telefoneEmergenciaProperty.setValue(funcionario.getTelefoneEmergencia());
+        
+       // datadeNascimentoProperty.set(funcionario.getDatadeNascimento());
+        //LocalDate datadeNascimento = sdatadeNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         alertProperty.setValue(Result.fail("Teste"));
     }
-    
+
     public void limpar(){
+        idProperty.setValue("");
         nomeProperty.setValue("");
-        telefoneProperty.setValue("");
+        telefoneProperty.setValue(null);
         enderecoProperty.setValue("");
         sexoProperty.setValue("");
-        datadeNascimentoProperty.setValue(null);
-        telefoneEmergenciaProperty.setValue("");
+        //datadeNascimentoProperty.setValue(null);
+        telefoneEmergenciaProperty.setValue(null);
+        podeEditar.setValue(true);
+        editar = false;
+        operacao.setValue("Cadastrar");
     }
 }

@@ -1,5 +1,6 @@
 package ifpr.pgua.eic.projetointegrador.controllers;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,14 +15,17 @@ import ifpr.pgua.eic.projetointegrador.model.results.Result;
 import ifpr.pgua.eic.projetointegrador.model.results.SuccessResult;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-import javax.swing.event.ChangeListener;
+import javafx.beans.value.ChangeListener;
 
+import ifpr.pgua.eic.projetointegrador.controllers.viewmodels.AreaRow;
 import ifpr.pgua.eic.projetointegrador.controllers.viewmodels.FuncionarioRow;
 import ifpr.pgua.eic.projetointegrador.controllers.viewmodels.TelaFuncionarioViewModel;
 
-public class TelaFuncionarios extends BaseController {
+public class TelaFuncionarios extends BaseController implements Initializable {
 
     @FXML
     public TextField tfNome;
@@ -53,6 +57,7 @@ public class TelaFuncionarios extends BaseController {
     @FXML
     public TextField tfSexo;
 
+    
     @FXML
     private DatePicker dpDataNascimento;
 
@@ -90,10 +95,10 @@ public class TelaFuncionarios extends BaseController {
         //liga a propriedade selecionado do viewmodel com a tabela
         viewModel.selecionadoProperty().bind(tbFuncionarios.getSelectionModel().selectedItemProperty());
     
-        /*viewModel.alertProperty().addListener((ChangeListener<Result>) (observable, oldVal, newVal) -> {
+        viewModel.alertProperty().addListener((ChangeListener<Result>) (observable, oldVal, newVal) -> {
             // TODO Auto-generated method stub
             BaseController.showMessage(newVal);
-        });*/
+        });
     
         //liga a propriedade texto do textfield nome com a propriedade do viewmodel
         tfNome.textProperty().bindBidirectional(viewModel.nomeProperty());
@@ -112,14 +117,15 @@ public class TelaFuncionarios extends BaseController {
     
         tfTelefoneEmergencia.textProperty().bindBidirectional(viewModel.telefoneEmergenciaProperty());
         tfTelefoneEmergencia.editableProperty().bind(viewModel.podeEditarProperty());
-    
+
+        
         btCadastrar.textProperty().bind(viewModel.operacaoProperty());
     }
 
     @FXML
-    private void cadastrar(){
-        viewModel.cadastrar();
-        //showMessage(Result msg);
+    void cadastrar(ActionEvent evento){
+        Result resultado = viewModel.cadastrar();
+        showMessage(resultado);
     }
 
     @FXML

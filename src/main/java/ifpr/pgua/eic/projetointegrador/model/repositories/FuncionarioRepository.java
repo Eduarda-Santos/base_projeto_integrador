@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-
-
 import ifpr.pgua.eic.projetointegrador.model.daos.FuncionarioDAO;
 import ifpr.pgua.eic.projetointegrador.model.entities.Funcionario;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
@@ -21,7 +19,7 @@ public class FuncionarioRepository {
         this.dao = dao;
     }
 
-    public Result adicionarFuncionario(String nome, int telefone, String endereco, String sexo, LocalDate datadeNascimento,
+    public Result adicionarFuncionario(String nome, int telefone, String endereco, String sexo, 
     int telefoneEmergencia){
         Optional<Funcionario> busca = funcionarios.stream().filter((fun)->fun.getNome().equals(nome)).findFirst();
     
@@ -29,11 +27,11 @@ public class FuncionarioRepository {
             return Result.fail("Funcinonário já está cadastrado");
         }
 
-        Funcionario funcionario = new Funcionario(nome, telefone, endereco, sexo, datadeNascimento, telefoneEmergencia);
+        Funcionario funcionario = new Funcionario(nome, telefone, endereco, sexo, telefoneEmergencia);
         return dao.create(funcionario);
     }
 
-    public Result editarFuncionario(String nome, int telefone, String endereco, String sexo, LocalDate datadeNascimento,
+    public Result editarFuncionario(String nome, int telefone, String endereco, String sexo, 
     int telefoneEmergencia){
         Optional<Funcionario> busca = funcionarios.stream().filter((fun)->fun.getNome().equals(nome)).findFirst();
     
@@ -42,7 +40,7 @@ public class FuncionarioRepository {
             funcionario.setNome(nome);
             funcionario.setTelefone(telefone);
             funcionario.setEndereco(endereco);
-            funcionario.setDatadeNascimento(datadeNascimento);
+            //funcionario.setDatadeNascimento(datadeNascimento);
             funcionario.setSexo(sexo);
             funcionario.setTelefoneEmergencia(telefoneEmergencia);
             
@@ -52,7 +50,7 @@ public class FuncionarioRepository {
         return Result.fail("Funcionário não encontrado");
     }
 
-    public Result deletarFuncionario(String nome, int telefone, String endereco, String sexo, LocalDate datadeNascimento,
+    public Result deletarFuncionario(String nome, int telefone, String endereco, String sexo, 
     int telefoneEmergencia){
         Optional<Funcionario> busca = funcionarios.stream().filter((fun)->fun.getNome().equals(nome)).findFirst();
     
@@ -61,7 +59,7 @@ public class FuncionarioRepository {
             funcionario.setNome("");
             funcionario.setTelefone(0);
             funcionario.setEndereco("");
-            funcionario.setDatadeNascimento(null);
+            //funcionario.setDatadeNascimento(null);
             funcionario.setSexo("");
             funcionario.setTelefoneEmergencia(0);
             
@@ -75,4 +73,5 @@ public class FuncionarioRepository {
         funcionarios = dao.listAll();
         return Collections.unmodifiableList(funcionarios);
     }
+
 }
