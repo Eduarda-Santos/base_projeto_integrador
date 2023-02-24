@@ -3,6 +3,8 @@ package ifpr.pgua.eic.projetointegrador.controllers.viewmodels;
 import java.time.format.DateTimeFormatter;
 
 import ifpr.pgua.eic.projetointegrador.model.entities.Funcionario;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -18,32 +20,32 @@ public class FuncionarioRow {
         return funcionario;
     }
 
-    public StringProperty idProperty(){
-        return new SimpleStringProperty(String.valueOf(funcionario.getId()));
+    public IntegerProperty idProperty(){
+        return new SimpleIntegerProperty(funcionario.getId());
     }
 
     public StringProperty nomeProperty(){
-        return new SimpleStringProperty(String.valueOf(funcionario.getNome()));
+        return new SimpleStringProperty(funcionario.getNome());
     }
 
     public StringProperty enderecoProperty(){
-        return new SimpleStringProperty(String.valueOf(funcionario.getEndereco()));
+        return new SimpleStringProperty(funcionario.getEndereco());
     }
 
-    public StringProperty telefoneProperty(){
-        return new SimpleStringProperty(String.valueOf(funcionario.getTelefone()));
+    public IntegerProperty telefoneProperty(){
+        return new SimpleIntegerProperty(funcionario.getTelefone());
     }
 
     public StringProperty sexoProperty(){
-        return new SimpleStringProperty(String.valueOf(funcionario.getSexo()));
+        return new SimpleStringProperty(funcionario.getSexo());
     }
     
     public StringProperty datadeNascimentoProperty(){
         return new SimpleStringProperty(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(funcionario.getDatadeNascimento()));
     }
 
-    public StringProperty telefoneEmergenciaProperty(){
-        return new SimpleStringProperty(String.valueOf(funcionario.getTelefoneEmergencia()));
+    public IntegerProperty telefoneEmergenciaProperty(){
+        return new SimpleIntegerProperty(funcionario.getTelefoneEmergencia());
     }
 
     
