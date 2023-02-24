@@ -43,8 +43,8 @@
               <TextField fx:id="tfNome" promptText="Digite o nome da área" GridPane.columnIndex="1" />
               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                 <children>
-                <MFXButton fx:id="btCadastrar" buttonType="RAISED" onAction="#cadastrar" text="Cadastrar" />
-                <MFXButton buttonType="RAISED" onAction="#limpar" text="Limpar" />
+                  <MFXButton fx:id="btCadastrar" onAction="#cadastrar" text="Cadastrar" />
+                  <MFXButton onAction="#limpar" text="Limpar" />
                 </children>
               </HBox>
            </children>

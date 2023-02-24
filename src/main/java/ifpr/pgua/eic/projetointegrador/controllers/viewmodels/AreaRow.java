@@ -3,6 +3,8 @@ package ifpr.pgua.eic.projetointegrador.controllers.viewmodels;
 import java.time.format.DateTimeFormatter;
 
 import ifpr.pgua.eic.projetointegrador.model.entities.Area;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -18,12 +20,12 @@ public class AreaRow {
         return area;
     }
 
-    public StringProperty idProperty(){
-        return new SimpleStringProperty(String.valueOf(area.getId()));
+    public IntegerProperty idProperty(){
+        return new SimpleIntegerProperty(area.getId());
     }
 
     public StringProperty nomeProperty(){
-        return new SimpleStringProperty(String.valueOf(area.getNome()));
+        return new SimpleStringProperty(area.getNome());
     }
 
     

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
 import ifpr.pgua.eic.projetointegrador.model.entities.Area;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
+import ifpr.pgua.eic.projetointegrador.model.results.SuccessResult;
 
 public class JDBCArea implements AreaDAO{
 
@@ -33,29 +35,37 @@ public class JDBCArea implements AreaDAO{
 
             PreparedStatement pstm = con.prepareStatement("INSERT INTO areas(nome) VALUES (?)");
 
+            pstm.setString(1, area.getNome());
 
+            pstm.executeUpdate();
+            pstm.close();
+            con.close();
+
+            return Result.success("Área cadastrada");
         } catch (Exception e) {
-            // TODO: handle exception
+            return Result.fail(e.getMessage());
         }
-        return null;
     }
 
     @Override
-    public Result update(int id, Area area) {
+    public Result update(String nome) {
         try {
             Connection con = fabricaConexoes.getConnection();
 
-            PreparedStatement pstm = con.prepareStatement("UPDATE INTO areas(nome) VALUES (?)");
+            PreparedStatement pstm = con.prepareStatement("UPDATE INTO areas(id,nome) VALUES (?)");
 
+            pstm.setString(1, nome);
+            pstm.close();
+            con.close();
 
+            return Result.success("Área atualizada");
         } catch (Exception e) {
-            // TODO: handle exception
+            return Result.fail(e.getMessage());
         }
-        return null;
     }
 
     @Override
-    public ArrayList<Area> listAll() {
+    public List<Area> listAll() {
         try{
             //criando uma conexão
             Connection con = fabricaConexoes.getConnection(); 
@@ -73,11 +83,13 @@ public class JDBCArea implements AreaDAO{
                 Area area = new Area(nome);
                 areas.add(area);
             }
+            rs.close();
+            con.close();
             return areas;
 
         }catch(SQLException e){
             System.out.println(e.getMessage());
-            return null;
+            return Collections.emptyList();
         }
     }
 

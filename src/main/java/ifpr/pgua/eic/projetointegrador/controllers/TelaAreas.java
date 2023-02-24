@@ -6,15 +6,19 @@ import java.util.ResourceBundle;
 import ifpr.pgua.eic.projetointegrador.controllers.viewmodels.AreaRow;
 import ifpr.pgua.eic.projetointegrador.controllers.viewmodels.FuncionarioRow;
 import ifpr.pgua.eic.projetointegrador.controllers.viewmodels.TelaAreaViewModel;
+import ifpr.pgua.eic.projetointegrador.model.results.Result;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.beans.value.ChangeListener;
 
-public class TelaAreas extends BaseController{
+public class TelaAreas extends BaseController implements Initializable {
     @FXML
     private TextField tfNome;
 
@@ -51,23 +55,23 @@ public class TelaAreas extends BaseController{
         //liga a propriedade selecionado do viewmodel com a tabela
         viewModel.selecionadoProperty().bind(tbAreas.getSelectionModel().selectedItemProperty());
     
-        /*viewModel.alertProperty().addListener((ChangeListener<Result>) (observable, oldVal, newVal) -> {
+        viewModel.alertProperty().addListener((ChangeListener<Result>) (observable, oldVal, newVal) -> {
             // TODO Auto-generated method stub
             BaseController.showMessage(newVal);
-        });*/
+        });
+
     
         //liga a propriedade texto do textfield nome com a propriedade do viewmodel
         tfNome.textProperty().bindBidirectional(viewModel.nomeProperty());
-        //liga a propriedade editavel do textfield com a propriedade do viewmodel
         tfNome.editableProperty().bind(viewModel.podeEditarProperty());
     
         btCadastrar.textProperty().bind(viewModel.operacaoProperty());
     }
 
     @FXML
-    private void cadastrar(){
-        viewModel.cadastrar();
-        //showMessage(Result msg);
+    void cadastrar(ActionEvent evento){
+        Result resultado = viewModel.cadastrar();
+        showMessage(resultado);
     }
 
     @FXML
