@@ -15,11 +15,6 @@ import javafx.scene.input.MouseEvent;
 
 public class TelaLogin extends BaseController {
 
-    @FXML
-    private void carregarTelaLogin(){
-        App.changeScreenRegion("LOGIN", BorderPaneRegion.CENTER);
-    }
-
     private TelaUserViewModel viewModel;
 
     public TelaLogin(TelaUserViewModel telaUserViewModel){
