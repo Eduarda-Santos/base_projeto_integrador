@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS funcionarios(
     telefone TEXT NOT NULL,
     endereco TEXT NOT NULL,
     sexo TEXT NOT NULL,
-    dataNascimento INTEGER NOT NULL,
+    dataNascimento INTEGER,
     telefoneEmergencia TEXT NOT NULL
 );
 
@@ -20,3 +20,4 @@ CREATE TABLE IF NOT EXISTS areas(
 );
 
 INSERT INTO usuario (nome_usuario, senha_usuario) VALUES ('admin', '1234');
+INSERT INTO funcionarios (id, nome, telefone, endereco, sexo, dataNascimento, telefoneEmergencia) VALUES ('1','teste', '1234567', 'teste', 'F', null, '1234567');

@@ -54,7 +54,7 @@ public class App extends BaseAppNavigator {
         funcionarioDAO = new JDBCFuncionario(fabricaConexoes);
         funcionarioRepository = new FuncionarioRepository(funcionarioDAO);
 
-        funcionarios = new Funcionario("teste", 0, "teste", "teste", null, 0);
+        funcionarios = new Funcionario("teste", 0, "teste", "teste", 0);
     
         usuarioDAO = new JDBCUsuario(fabricaConexoes);
         usuarioRepository = new UsuarioRepository(usuarioDAO);
